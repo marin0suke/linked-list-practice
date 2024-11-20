@@ -19,6 +19,17 @@ class LinkedList {
         }
         this.size++; 
     }
+
+    prepend(value) { // add on to the front of the list.
+        const newNode = new Node(value);
+        if(!this.head) { //still gotta check if list is empty first.
+            this.head = newNode; 
+        } else {
+            newNode.nextNode = this.head; // newNodes nextNode prop points to the head now.
+            newNode = this.head; // set newNode to head of the list.
+        }
+        this.size++;
+    }
 }
 
 export default LinkedList;
