@@ -98,7 +98,7 @@ export default class LinkedList {
         }
 
         //if index input invalid to list.
-        if (index < 0 || index > this.size) {
+        if (index < 0 || index >= this.size) {
             return null;
         }
 
