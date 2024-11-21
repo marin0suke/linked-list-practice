@@ -1,6 +1,6 @@
-import Node from "./listNode";
+import Node from "./listNode.js";
 
-class LinkedList {
+export default class LinkedList {
     constructor() {
         this.head = null; // new LL is empty tf head is empty.
         this.size = 0; // nothing in the list.
@@ -22,49 +22,49 @@ class LinkedList {
 
     prepend(value) { // add on to the front of the list.
         const newNode = new Node(value);
-        if (!this.head) { //still gotta check if list is empty first.
+        if (!this.head) { 
             this.head = newNode; 
         } else {
             newNode.nextNode = this.head; // newNodes nextNode prop points to the head now.
-            newNode = this.head; // set newNode to head of the list.
+            this.head = newNode;
         }
         this.size++;
     }
 
-    size() {
-        return this.size;
+    getSize() {
+        return `Current list size = ${this.size}`;
     }
 
-    head() {
+    getHead() {
         if (!this.head) {
             return null;
         } else {
-            return this.head;
+            return `First item in the list is ${this.head.value}`; // when using template literal, need to access directly. 
         }
     }
 
-    tail() {
-        if (!this.tail) {
+    getTail() {
+        if (!this.head) {
             return null;
         } else {
             let current = this.head;
             while (current.nextNode) {
                 current = current.nextNode;
             }
-            return current; // this will be the last node (points to null so exits while loop).
+            return `Last item in the list is ${current.value}`; // this will be the last node (points to null so exits while loop).
         }
     }
 
-    at(index) {
+    getValueAt(index) {
         if (index < 0 || index > this.size) {
             return null;
         } else {
             let current = this.head;
             while (current.nextNode) {
-                for (i = 0; i < index; i++) {
+                for (let i = 0; i < index; i++) {
                     current = current.nextNode;
                 }
-            return current;
+            return `Value at index 3 is ${current.value}`;
             }
         }
     }
@@ -85,7 +85,7 @@ class LinkedList {
             const value = current.nextNode.value; // we can only set nextNode from the previous node. 
             current.nextNode = null; // remove it.
             this.size--;
-            return value;
+            return `${value} has been removed from the list.`;
         }
     }
 
@@ -101,13 +101,13 @@ class LinkedList {
         return false;
     }
 
-    index(value) {
+    getIndex(value) {
         const target = value;
         if (!this.head) {
             console.log("List is empty");
-            return -1;
+            return null;
         }
-        
+
         let current = this.head;
         let i = 0;
 
@@ -122,6 +122,27 @@ class LinkedList {
         console.log("No such node with target value");
         return -1;
     }
-}
 
-export default LinkedList;
+    toString() {
+        if (!this.head) {
+            console.log("This list is empty!");
+            return null;
+        }
+
+        if (!this.head.nextNode) {
+            const singleNode = (String(this.head.value)); // not sure if this would work.
+            console.log(singleNode);
+            return singleNode;
+        }
+
+        let printedList = "";
+        let current = this.head;
+        while (current) { // bc we want to access the current value. so check for current. 
+            printedList += `( ${String(current.value)} ) -> `; 
+            current = current.nextNode;
+        }
+
+        printedList += "null"; // after exiting while loop, we should be ON null. 
+        return printedList;
+    } 
+}
