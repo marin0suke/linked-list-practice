@@ -58,13 +58,27 @@ export default class LinkedList {
     getValueAt(index) {
         if (index < 0 || index > this.size) {
             return null;
+        } 
+
+        let current = this.head;
+        let i = 0;
+
+        while (i < index) {
+            current = current.nextNode;
+            i++;
+        }
+
+        return `Value at ${index} is ${current.value}`;
+    }
+    
+
+    insertAt(value, index) {
+        if (index < 0 || index > this.size) {
+            return null;
         } else {
             let current = this.head;
             while (current.nextNode) {
-                for (let i = 0; i < index; i++) {
-                    current = current.nextNode;
-                }
-            return `Value at index 3 is ${current.value}`;
+
             }
         }
     }
