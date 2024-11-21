@@ -82,14 +82,24 @@ class LinkedList {
             while (current.nextNode.nextNode) { // loop runs as long as current has 2x nextNodes - (2nd to last.)
                 current = current.nextNode; // sets to 2nd last in list. 
             }
-            const value = current.nextNode.value; // we can only directly access the value of node from previous node. 
+            const value = current.nextNode.value; // we can only set nextNode from the previous node. 
             current.nextNode = null; // remove it.
             this.size--;
             return value;
         }
     }
 
-    
+    contains(value) {
+        const target = value;
+        let current = this.head; // pointer to start traverse.
+        while (current) {
+            if (current.value === target) {
+                return true; // if target is matched, return.
+            }
+            current = current.nextNode; // if current doesn't match, move onto the next.
+        }
+        return false;
+    }
 }
 
 export default LinkedList;
