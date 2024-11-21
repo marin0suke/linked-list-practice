@@ -8,7 +8,7 @@ class LinkedList {
 
     append(value) {
         const newNode = new Node(value);
-        if(!this.head) { // means we have an empty list.
+        if (!this.head) { // means we have an empty list.
             this.head = newNode; // if there is no head, this newNode becomes the head (first in the list)
         } else { // the list already has nodes in it
             let current = this.head; // initialise pointer to move through the list. set it to the start.
@@ -22,7 +22,7 @@ class LinkedList {
 
     prepend(value) { // add on to the front of the list.
         const newNode = new Node(value);
-        if(!this.head) { //still gotta check if list is empty first.
+        if (!this.head) { //still gotta check if list is empty first.
             this.head = newNode; 
         } else {
             newNode.nextNode = this.head; // newNodes nextNode prop points to the head now.
@@ -30,6 +30,32 @@ class LinkedList {
         }
         this.size++;
     }
+
+    size() {
+        return this.size;
+    }
+
+    head() {
+        if (!this.head) {
+            return null;
+        } else {
+            return this.head;
+        }
+    }
+
+    tail() {
+        if (!this.tail) {
+            return null;
+        } else {
+            let current = this.head;
+            while (current.nextNode) {
+                current = current.nextNode;
+            }
+            return current; // this will be the last node (points to null so exits while loop).
+        }
+    }
+
+    
 }
 
 export default LinkedList;
