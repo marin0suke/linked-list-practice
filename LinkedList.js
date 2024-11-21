@@ -100,6 +100,28 @@ class LinkedList {
         }
         return false;
     }
+
+    index(value) {
+        const target = value;
+        if (!this.head) {
+            console.log("List is empty");
+            return -1;
+        }
+        
+        let current = this.head;
+        let i = 0;
+
+        while (current) {
+            if (current.value === target) {
+                return i;
+            }
+            current = current.nextNode;
+            i++;
+        }
+        
+        console.log("No such node with target value");
+        return -1;
+    }
 }
 
 export default LinkedList;
