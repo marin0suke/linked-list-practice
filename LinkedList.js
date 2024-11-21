@@ -69,6 +69,26 @@ class LinkedList {
         }
     }
 
+    pop() {
+        if (!this.head) { // if list is empty, no action.
+            return null;
+        } else if (!this.head.nextNode) { // if the head is the only node.
+            const value = this.head.value; // we want to keep this to return.
+            this.head = null; // remove this head.
+            this.size--; // decrement list size.
+            return value;
+        } else {
+            let current = this.head;
+            while (current.nextNode.nextNode) { // loop runs as long as current has 2x nextNodes - (2nd to last.)
+                current = current.nextNode; // sets to 2nd last in list. 
+            }
+            const value = current.nextNode.value; // we can only directly access the value of node from previous node. 
+            current.nextNode = null; // remove it.
+            this.size--;
+            return value;
+        }
+    }
+
     
 }
 
