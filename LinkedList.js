@@ -91,6 +91,41 @@ export default class LinkedList {
         return console.log(this.toString());
     }
 
+    removeAt(index) {
+        //edge case for empty list:
+        if (!this.head) {
+          return null; 
+        }
+
+        //if index input invalid to list.
+        if (index < 0 || index > this.size) {
+            return null;
+        }
+
+        // edge case if index input is 0.
+        if (index === 0) {
+            const removed = this.head;
+            this.head = this.head.nextNode;
+            this.size--;
+            return `${removed.value} was removed from the list`;
+        }
+
+        // remove at index
+        let current = this.head;
+        let i = 0;
+        
+        while (i < index - 1) {
+          current = current.nextNode;
+          i++;
+        }
+      
+        const removed = current.nextNode;
+        current.nextNode = removed.nextNode;
+        this.size--;
+        return `${removed.value} was removed from the list`;
+      }
+
+
     pop() {
         if (!this.head) { // if list is empty, no action.
             return null;
