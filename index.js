@@ -24,3 +24,5 @@ console.log(list.pop());
 console.log(list.toString());
 console.log(list.contains("donkey"));
 console.log(list.contains("donke"));
+
+list.insertAt("hamster", 3);

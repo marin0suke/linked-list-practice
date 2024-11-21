@@ -75,12 +75,20 @@ export default class LinkedList {
     insertAt(value, index) {
         if (index < 0 || index > this.size) {
             return null;
-        } else {
-            let current = this.head;
-            while (current.nextNode) {
-
-            }
         }
+
+        let current = this.head;
+        let i = 0;
+
+        while (i < (index - 1)) {
+            current = current.nextNode;
+            i++;
+        }
+
+        const newNode = new Node(value); // once we arrive where we need to be, create new node.
+        newNode.nextNode = current.nextNode; // connect rest of list after index to the new node.
+        current.nextNode = newNode; // then we can set current.nextNode and "overwrite" current.
+        return console.log(this.toString());
     }
 
     pop() {
